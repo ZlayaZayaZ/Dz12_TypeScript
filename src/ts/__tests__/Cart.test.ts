@@ -10,6 +10,32 @@ test('new card should be empty', () => {
   expect(cart.items.length).toBe(0);
 });
 
+test('checking for adding a non-physical item with a negative quantity', () => {
+  const cart = new Cart(); 
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, false, -1));
+  expect(cart.items.length).toBe(1);
+  expect(cart.items[0].count).toBe(1);
+});
+
+test('checking for adding a non-physical item with zero quantity', () => {
+  const cart = new Cart(); 
+  cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900, false, 0));
+  expect(cart.items.length).toBe(1);
+  expect(cart.items[0].count).toBe(1);
+});
+
+test('checking for adding a physical product with a negative quantity', () => {
+  const cart = new Cart(); 
+  cart.add(new Telephone(158, "Nokia-6512", 7099, true, -3));
+  expect(cart.items.length).toBe(0);
+});
+
+test('checking adding a physical product with zero quantity', () => {
+  const cart = new Cart(); 
+  cart.add(new Telephone(158, "Nokia-6512", 7099, true, 0));
+  expect(cart.items.length).toBe(0);
+});
+
 test('checking the calculate function', () => {
   const cart = new Cart();
   cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));

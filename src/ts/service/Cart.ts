@@ -5,7 +5,9 @@ export default class Cart {
 
     add(item: Buyable): void {
         if (item.isPhisiacal) {
-            this._items.push(item);
+            if (item.count > 0) {
+                this._items.push(item);
+            }
         } else {
             item.count = 1
             this._items.push(item);

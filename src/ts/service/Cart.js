@@ -15,7 +15,9 @@ var Cart = /** @class */ (function () {
     }
     Cart.prototype.add = function (item) {
         if (item.isPhisiacal) {
-            this._items.push(item);
+            if (item.count > 0) {
+                this._items.push(item);
+            }
         }
         else {
             item.count = 1;
